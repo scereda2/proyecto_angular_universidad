@@ -1,0 +1,21 @@
+<h1 style="text-align: center;">Lista Productos</h1>
+<br>
+
+  <div class="card-container">
+    @for(producto of productos; track productos){
+      <div class="card" style="width: 18rem;"  >
+      <img src="{{producto.image}}" class="card-img-top" alt="Imagen de producto" style="max-width: 150px; max-height: 150px;">
+      <div class="card-body">
+      <h5 class="card-title">{{producto.title}}</h5>
+      <p class="card-text" *ngIf="!producto.expanded; else showFullText">{{producto.description.slice(0, 100)}}...</p>
+      <ng-template #showFullText>
+        <p class="card-text">{{producto.description}}</p>
+      </ng-template>
+      <p *ngIf="!producto.expanded" (click)="producto.expanded = true" class="read-more">Leer más</p>
+      <p *ngIf="producto.expanded" (click)="producto.expanded = false" class="read-less">Leer menos</p>
+      <h6>{{producto.price}}</h6>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    </div>
+    }
+  </div>

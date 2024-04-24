@@ -1,0 +1,31 @@
+<h1 style="text-align: center;">Lista Clientes</h1>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nombre Usuario</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Ciudad</th>
+        <th scope="col">Direccion</th>   
+        <th scope="col">Código Postal</th>
+        <th scope="col">Teléfono</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(cliente of clientes; track clientes){
+        <tr>
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.username }}</td>
+          <td>{{ cliente.name.firstname }} {{ cliente.name.lastname }}</td>
+          <td>{{ cliente.address.city }}</td>
+          <td>{{ cliente.address.street }} {{ cliente.address.number }}</td>
+          <td>{{ cliente.address.zipcode }}</td>
+          <td>{{ cliente.phone }}</td>
+        </tr>
+      }
+      
+    </tbody>
+  </table>

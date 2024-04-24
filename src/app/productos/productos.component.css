@@ -1,0 +1,25 @@
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card{
+    margin: 10px;
+}
+
+.read-more,
+.read-less {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.card-text {
+    max-height: 100px; /* Establece la altura máxima que deseas mostrar */
+    overflow: hidden; /* Oculta el texto que excede la altura máxima */
+  }
+  
+  .expanded .card-text {
+    max-height: none; /* Elimina la altura máxima cuando la tarjeta está expandida */
+  }

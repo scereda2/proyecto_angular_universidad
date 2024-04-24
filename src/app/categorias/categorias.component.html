@@ -1,0 +1,24 @@
+<h1 style="text-align: center;">Lista categorias</h1>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Categoría</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Imagen</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(categoria of categorias; track categorias){
+      <tr>
+        <td>{{ categoria.id }}</td>
+        <td>{{ categoria.category }}</td>
+        <td>{{ categoria.description }}</td>
+        <td><img src="{{ categoria.image }}" alt="Imagen de categoría" style="max-width: 100px; max-height: 100px;"></td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+

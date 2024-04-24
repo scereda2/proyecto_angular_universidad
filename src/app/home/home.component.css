@@ -1,0 +1,35 @@
+#carouselExample {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-item img {
+    max-width: 500px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+  }
+/* Estilos para los botones del carrusel */
+.carousel-control-prev,
+.carousel-control-next {
+  color: #000; /* Cambia el color de los botones */
+  font-size: 2rem; /* Ajusta el tamaño de la fuente de los botones */
+  background-color: rgba(255, 255, 255, 0.5); /* Cambia el color de fondo con una opacidad */
+  border: none; /* Elimina el borde de los botones */
+  border-radius: 50%; /* Da forma de círculo a los botones */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  color: #fff; /* Cambia el color de los botones al pasar el mouse sobre ellos */
+  background-color: rgba(0, 0, 0, 0.5); /* Cambia el color de fondo al pasar el mouse sobre ellos */
+}
+
+/* Estilos para el ícono del botón de control del carrusel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: transparent; /* Elimina el color de fondo del ícono */
+}
+  
