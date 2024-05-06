@@ -13,9 +13,13 @@
       </ng-template>
       <p *ngIf="!producto.expanded" (click)="producto.expanded = true" class="read-more">Leer más</p>
       <p *ngIf="producto.expanded" (click)="producto.expanded = false" class="read-less">Leer menos</p>
-      <h6>{{producto.price}}</h6>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h6>${{producto.price}}</h6>
+      <button (click)="agregarAlCarrito(producto)" class="btn btn-primary">Agregar Carrito</button>
+
+
     </div>
     </div>
     }
   </div>
+
+ 

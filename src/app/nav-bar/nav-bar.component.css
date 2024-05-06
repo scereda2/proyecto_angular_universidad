@@ -1,0 +1,14 @@
+.carro-name{
+    font-weight: bold; 
+    font-size: larger; 
+    text-transform: capitalize;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+.flixed-top{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}

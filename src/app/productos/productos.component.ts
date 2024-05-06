@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProductosService } from '../shared/productos.service';
 import { CommonModule } from '@angular/common';
+import { CarritoService } from '../shared/carrito.service';
 
 @Component({
   selector: 'app-productos',
@@ -15,9 +16,10 @@ export class ProductosComponent {
 
   title = 'app_curso1';
   productos: any[]=[];
-  
+ 
 
   private readonly productoService = inject(ProductosService);
+  private readonly carritoService = inject(CarritoService);
 
   constructor(){}
 
@@ -28,5 +30,11 @@ export class ProductosComponent {
     });
 
   }
+
+  agregarAlCarrito(producto: any){
+    this.carritoService.agregarAlCarrito(producto);
+    
+  }
+
 
 }
