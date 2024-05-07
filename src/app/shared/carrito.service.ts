@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class CarritoService {
 
-  constructor() { 
+  constructor(private _http: HttpClient) { 
     this.obtenerCarritoDesdeLocalStorage();
   }
 
   listaService:any[]=[]
-  private readonly _http= inject(HttpClient);
+  
 
   getCarrito(): Observable<any[]> {
     return this._http.get<any[]>('https://fakestoreapi.com/carts');
@@ -35,14 +35,20 @@ export class CarritoService {
   }
 
   private actualizarLocalStorage() {
-    localStorage.setItem('carrito', JSON.stringify(this.listaService));
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('carrito', JSON.stringify(this.listaService));
+    }
+    
   }
 
   private obtenerCarritoDesdeLocalStorage() {
-    const carritoJSON = localStorage.getItem('carrito');
+    if (typeof localStorage !== 'undefined') {
+      const carritoJSON = localStorage.getItem('carrito');
     if (carritoJSON) {
       this.listaService = JSON.parse(carritoJSON);
     }
+    }
+    
   }
   vaciarCarrito(){
     this.listaService=[];

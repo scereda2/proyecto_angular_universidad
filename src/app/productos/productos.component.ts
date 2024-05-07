@@ -33,7 +33,7 @@ export class ProductosComponent {
 
   agregarAlCarrito(producto: any){
     this.carritoService.agregarAlCarrito(producto);
-    
+    alert("Producto Añadido");
   }
 
 

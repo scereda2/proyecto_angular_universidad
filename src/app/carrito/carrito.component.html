@@ -20,7 +20,9 @@
   </div>
 </div>
 
-
+<div *ngIf="carritos.length >0">
+    <h3 style="text-align: right; font-size: 50px;">Total: ${{total}}</h3>
+</div>
 
 <ng-template #carritoVacio class="carrito-vacio">
   <h3 class="no-carrito">No hay productos en el carrito.</h3>

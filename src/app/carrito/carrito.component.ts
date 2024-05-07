@@ -14,17 +14,22 @@ import { CommonModule } from '@angular/common';
 export class CarritoComponent {
 
   carritos: any[] = [];
+  total: number = 0;
 
   constructor(private readonly carritoService: CarritoService) {}
 
-  // private readonly carritoService= inject(CarritoService);
 
   ngOnInit(){
     this.carritoService.getCarrito().subscribe(carritosObs => {
       this.carritos = this.carritoService.listaService;
+      this.actualizarTotal();
       this.actualizarCarrito();
     });
     console.log("El carrito tiene estos productos: ", this.carritos);
+  }
+
+  actualizarTotal(){
+    this.total = this.carritos.reduce((acc, carrito) => acc + carrito.price, 0);
   }
 
   private actualizarCarrito(){
@@ -32,15 +37,17 @@ export class CarritoComponent {
     
   }
   
-
   eliminarDelCarrito(id : number){
-    this.carritoService.eliminarProductoDelCarrito(id);
-    this.carritos = this.carritos.filter(carrito => carrito.id !== id);
+    this.carritoService.eliminarProductoDelCarrito(id).subscribe(()=>{
+      this.carritos = this.carritos.filter(carrito => carrito.id !== id);
+      this.actualizarTotal();
+    });
   }
 
   vaciarCarrito(){
     this.carritoService.vaciarCarrito();
     this.carritos= [];
+    this.actualizarTotal();
   }
   
 }
