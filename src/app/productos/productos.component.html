@@ -1,6 +1,51 @@
-<br>
+<br />
+<h1 style="text-align: center">Lista Productos</h1>
+<br />
 
-<h1 style="text-align: center;">Lista Productos</h1>
+<div class="card-container">
+  <div *ngFor="let producto of productos">
+    <div class="card" style="width: 18rem">
+      <img
+        src="{{ producto.image }}"
+        class="card-img-top"
+        alt="Imagen de producto"
+        style="max-width: 150px; max-height: 150px"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ producto.title }}</h5>
+        <p
+          class="card-text"
+          *ngIf="!expandedState[producto.id]; else showFullText"
+        >
+          {{ producto.description.slice(0, 100) }}...
+        </p>
+        <ng-template #showFullText>
+          <p class="card-text">{{ producto.description }}</p>
+        </ng-template>
+        <p
+          *ngIf="!expandedState[producto.id]"
+          (click)="toggleExpand(producto.id)"
+          class="read-more"
+        >
+          Leer más
+        </p>
+        <p
+          *ngIf="expandedState[producto.id]"
+          (click)="toggleExpand(producto.id)"
+          class="read-less"
+        >
+          Leer menos
+        </p>
+        <h6>${{ producto.price }}</h6>
+        <button (click)="agregarAlCarrito(producto)" class="btn btn-primary">
+          Agregar Carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <h1 style="text-align: center;">Lista Productos</h1>
 <br>
 
   <div class="card-container">
@@ -22,6 +67,4 @@
     </div>
     </div>
     }
-  </div>
-
- 
+  </div> -->

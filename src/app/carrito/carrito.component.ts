@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { CarritoService } from '../shared/carrito.service';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ProductosInterface } from '../interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-carrito',
@@ -11,10 +13,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })
-export class CarritoComponent {
 
-  carritos: any[] = [];
+
+export class CarritoComponent implements OnDestroy {
+
+  carritos: ProductosInterface[] = [];
   total: number = 0;
+  private carritoSubscripcion: Subscription | undefined;  
 
   constructor(private readonly carritoService: CarritoService) {}
 
@@ -26,6 +31,12 @@ export class CarritoComponent {
       this.actualizarCarrito();
     });
     console.log("El carrito tiene estos productos: ", this.carritos);
+  }
+
+  ngOnDestroy(): void {
+      if (this.carritoSubscripcion) {
+        this.carritoSubscripcion.unsubscribe();
+      }
   }
 
   actualizarTotal(){

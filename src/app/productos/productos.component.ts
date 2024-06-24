@@ -1,9 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProductosService } from '../shared/productos.service';
 import { CommonModule } from '@angular/common';
 import { CarritoService } from '../shared/carrito.service';
+import { ProductosInterface } from '../interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-productos',
@@ -12,26 +14,37 @@ import { CarritoService } from '../shared/carrito.service';
   templateUrl: './productos.component.html',
   styleUrl: './productos.component.css'
 })
-export class ProductosComponent {
+export class ProductosComponent implements OnDestroy{
 
   title = 'app_curso1';
-  productos: any[]=[];
- 
+  productos: ProductosInterface[]=[];
+  expandedState:{[key: number]: boolean} = {};
+private productosSubscripcion: Subscription | undefined;
 
   private readonly productoService = inject(ProductosService);
   private readonly carritoService = inject(CarritoService);
 
   constructor(){}
 
+
   ngOnInit(){
-    this.productoService.getProductos().subscribe(productosObs => {
+    this.productosSubscripcion=
+    this.productoService.getProductos().subscribe((productosObs: ProductosInterface[]) => {
       this.productos=productosObs;
-      this.productos.forEach(producto => producto.expanded = false);
     });
 
   }
+  ngOnDestroy(): void {
+    if (this.productosSubscripcion) {
+      this.productosSubscripcion.unsubscribe();
+    }
+  }
 
-  agregarAlCarrito(producto: any){
+  toggleExpand(id: number){
+    this.expandedState[id]=!this.expandedState[id];
+  }
+
+  agregarAlCarrito(producto: ProductosInterface){
     this.carritoService.agregarAlCarrito(producto);
     alert("Producto Añadido");
   }

@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ProductosInterface } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriasService {
 
-  listaService:any[]=[]
+  listaService:ProductosInterface[]=[]
   private readonly _http = inject(HttpClient);
   constructor() { }
   
-  getCategorias(): Observable<any[]>{
-    return this._http.get<any[]>('https://fakestoreapi.com/products');
+  getCategorias(): Observable<ProductosInterface[]>{
+    return this._http.get<ProductosInterface[]>('https://fakestoreapi.com/products');
    }
   
 }

@@ -1,17 +1,18 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UsuarioInterface } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  listaService:any[]=[];
+  listaService:UsuarioInterface[]=[];
   private readonly _http = inject(HttpClient);
   constructor(){}
   
-  getClientes(): Observable<any[]>{
-    return this._http.get<any[]>('https://fakestoreapi.com/users');
+  getClientes(): Observable<UsuarioInterface[]>{
+    return this._http.get<UsuarioInterface[]>('https://fakestoreapi.com/users');
   }
 
 }
