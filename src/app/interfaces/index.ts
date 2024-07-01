@@ -38,14 +38,14 @@ export interface UsuarioInterface {
 }
 
 export interface Address {
-    geolocation: Geolocation;
     city:        string;
     street:      string;
     number:      number;
     zipcode:     string;
+    geolocation: GeoLocation;
 }
 
-export interface Geolocation {
+export interface GeoLocation {
     lat:  string;
     long: string;
 }

@@ -1,32 +1,139 @@
-<h1 style="text-align: center;">Lista Clientes</h1>
-<br>
+<h1 style="text-align: center">Lista Clientes</h1>
+<br />
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Email</th>
-        <th scope="col">Nombre Usuario</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Ciudad</th>
-        <th scope="col">Direccion</th>   
-        <th scope="col">Código Postal</th>
-        <th scope="col">Teléfono</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for(cliente of clientes; track clientes){
-        <tr>
-          <td>{{ cliente.id }}</td>
-          <td>{{ cliente.email }}</td>
-          <td>{{ cliente.username }}</td>
-          <td>{{ cliente.name.firstname }} {{ cliente.name.lastname }}</td>
-          <td>{{ cliente.address.city }}</td>
-          <td>{{ cliente.address.street }} {{ cliente.address.number }}</td>
-          <td>{{ cliente.address.zipcode }}</td>
-          <td>{{ cliente.phone }}</td>
-        </tr>
-      }
-      
-    </tbody>
-  </table>
-  
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Email</th>
+      <th scope="col">Nombre Usuario</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">Código Postal</th>
+      <th scope="col">Teléfono</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(cliente of clientes; track clientes){
+    <tr>
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.email }}</td>
+      <td>{{ cliente.username }}</td>
+      <td>{{ cliente.name.firstname }} {{ cliente.name.lastname }}</td>
+      <td>{{ cliente.address.city }}</td>
+      <td>{{ cliente.address.street }} {{ cliente.address.number }}</td>
+      <td>{{ cliente.address.zipcode }}</td>
+      <td>{{ cliente.phone }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="selectCliente(cliente)"
+        >
+          Editar
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+<h2>Editar Cliente</h2>
+<form [formGroup]="editForm">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      formControlName="email"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="username">Nombre Usuario</label>
+    <input
+      type="text"
+      id="username"
+      class="form-control"
+      formControlName="username"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="firstname">Nombre</label>
+    <input
+      type="text"
+      id="firstname"
+      class="form-control"
+      formControlName="firstname"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="lastname">Apellido</label>
+    <input
+      type="text"
+      id="lastname"
+      class="form-control"
+      formControlName="lastname"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="city">Ciudad</label>
+    <input
+      type="text"
+      id="city"
+      class="form-control"
+      formControlName="city"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="street">Direccion</label>
+    <input
+      type="text"
+      id="street"
+      class="form-control"
+      formControlName="street"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="number">Número</label>
+    <input
+      type="text"
+      id="number"
+      class="form-control"
+      formControlName="number"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="zipcode">Código Postal</label>
+    <input
+      type="text"
+      id="zipcode"
+      class="form-control"
+      formControlName="zipcode"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="phone">Teléfono</label>
+    <input
+      type="text"
+      id="phone"
+      class="form-control"
+      formControlName="phone"
+      required
+    />
+  </div>
+  <button type="button" class="btn btn-secondary" (click)="cancelEdit()">
+    Cancelar
+  </button>
+  <button type="button" class="btn btn-primary" (click)="saveChanges()">
+    Guardar
+  </button>
+</form>
